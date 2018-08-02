@@ -10,5 +10,6 @@ namespace Video_Rentals.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public bool IsSubcribedToNewsLetter { get; set; }
     }
 }
