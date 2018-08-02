@@ -9,6 +9,6 @@ namespace Video_Rentals.ViewModels
     public class RandomMovieViewModels
     {
         public Movie Movie { get; set; }
-        public List<Customers> Customers { get; set; }
+        public List<Customer> Customers { get; set; }
     }
 }
