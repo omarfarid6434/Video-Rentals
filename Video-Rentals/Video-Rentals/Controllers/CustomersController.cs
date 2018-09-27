@@ -25,6 +25,10 @@ namespace Video_Rentals.Controllers
             base.Dispose(disposing);
         }
 
+        public ActionResult New()
+        {
+            return View();
+        }
         public ViewResult Index()
         {
             var customers = _context.Customers.Include(c=> c.MembershipType).ToList();
