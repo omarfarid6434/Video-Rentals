@@ -4,7 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Video_Rentals.Models;
+using Video_Rentals.ViewModels;
 using System.Data.Entity;
+using Video_Rentals.Migrations;
+
 
 
 namespace Video_Rentals.Controllers
@@ -21,6 +24,52 @@ namespace Video_Rentals.Controllers
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
+        }
+
+        public ActionResult New()
+        {
+            var genre = _context.Genres.ToList();
+            var viewmodel = new MovieFormViewModel
+            {
+                Genre = genre
+            };
+            return View("MovieForm",viewmodel);
+        }
+
+        [HttpPost]
+        public ActionResult Save(Movie movie)
+        {
+            if(movie.Id==0)
+
+            _context.Movies.Add(movie);
+
+            else
+            {
+                var movieInDB = _context.Movies.SingleOrDefault(m => m.Id == movie.Id);
+
+                movieInDB.Name = movie.Name;
+                movieInDB.NumeberOfStock = movie.NumeberOfStock;
+                movieInDB.ReaslesDate = movie.ReaslesDate;
+                movieInDB.GenreId = movie.GenreId;
+            }
+            _context.SaveChanges();
+            return RedirectToAction("Index","Movies");
+        }
+        public ActionResult Edit(int id)
+        {
+            var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
+
+            if (movie == null)
+
+                return HttpNotFound();
+
+            var veiwmodel = new MovieFormViewModel
+            {
+                Movie = movie,
+                Genre = _context.Genres.ToList()
+            };
+
+            return View("MovieForm", veiwmodel);
         }
 
         // GET: Movies
