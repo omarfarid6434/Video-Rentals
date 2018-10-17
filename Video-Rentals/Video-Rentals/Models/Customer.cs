@@ -26,6 +26,7 @@ namespace Video_Rentals.Models
 
 
         [Display(Name ="Date of Birth")]
+        [Min18yearOldIfMembers]
         public DateTime? Birthdate { get; set; }
     }
 }

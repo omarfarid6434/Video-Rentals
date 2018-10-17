@@ -31,6 +31,7 @@ namespace Video_Rentals.Controllers
 
             var viewmodel = new CustomerFormViewModel
             {
+                Customer = new Customer(),
                MembershipTypes=membershipTypes
             };
 
@@ -38,6 +39,7 @@ namespace Video_Rentals.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Customer customer)
         {
             if (!ModelState.IsValid)
