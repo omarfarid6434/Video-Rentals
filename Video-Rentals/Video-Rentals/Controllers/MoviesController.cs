@@ -31,14 +31,26 @@ namespace Video_Rentals.Controllers
             var genre = _context.Genres.ToList();
             var viewmodel = new MovieFormViewModel
             {
+                
                 Genre = genre
             };
             return View("MovieForm",viewmodel);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewmodel = new MovieFormViewModel(movie)
+                {
+                    Genre = _context.Genres.ToList()
+                };
+
+                return View("MovieForm",viewmodel);
+            }
+
             if(movie.Id==0)
 
             _context.Movies.Add(movie);
@@ -63,10 +75,10 @@ namespace Video_Rentals.Controllers
 
                 return HttpNotFound();
 
-            var veiwmodel = new MovieFormViewModel
+            var veiwmodel = new MovieFormViewModel(movie)
             {
-                Movie = movie,
-                Genre = _context.Genres.ToList()
+               
+               Genre = _context.Genres.ToList()
             };
 
             return View("MovieForm", veiwmodel);

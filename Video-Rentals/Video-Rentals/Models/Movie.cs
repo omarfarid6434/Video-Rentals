@@ -18,7 +18,7 @@ namespace Video_Rentals.Models
 
         
         [Display(Name = "Genre Type")]
-        [Required]
+       
         public byte GenreId { get; set; }
 
         public DateTime DateAdded { get; set; }
@@ -27,6 +27,7 @@ namespace Video_Rentals.Models
         public DateTime ReaslesDate { get; set; }
 
         [Display(Name ="Number of Stock")]
+        [Range(1, 20)]
         public byte NumeberOfStock { get; set; }
 
 
