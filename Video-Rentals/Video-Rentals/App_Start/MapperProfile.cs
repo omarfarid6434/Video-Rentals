@@ -13,7 +13,14 @@ namespace Video_Rentals.App_Start
         public MapperProfile()
         {
             Mapper.CreateMap<Customer, CustomersDto>();
-            Mapper.CreateMap<CustomersDto, Customer>();
+            Mapper.CreateMap<Movie, MoviesDto>();
+
+
+
+            Mapper.CreateMap<CustomersDto, Customer>()
+                .ForMember(c=>c.Id,opt=>opt.Ignore()); 
+            Mapper.CreateMap<MoviesDto, Movie>()
+                .ForMember(c => c.Id, opt => opt.Ignore());
         }
     }
 }
