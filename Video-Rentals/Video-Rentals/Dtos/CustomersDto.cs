@@ -19,6 +19,7 @@ namespace Video_Rentals.Dtos
         public bool IsSubcribedToNewsLetter { get; set; }
 
         public byte MembershipTypeId { get; set; }
+        public MembershipTypeDto MembershipType { get; set; }
 
         //[Min18yearOldIfMembers]
         public DateTime? Birthdate { get; set; }
