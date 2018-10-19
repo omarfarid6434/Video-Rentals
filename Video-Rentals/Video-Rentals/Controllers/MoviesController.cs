@@ -88,10 +88,9 @@ namespace Video_Rentals.Controllers
 
         public ViewResult Index()
         {
-            var movies = _context.Movies.Include(m => m.Genre).ToList();
-
-            return View(movies);
+            return View();
         }
+
         public ActionResult Details( int id) {
 
             var movie = _context.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);

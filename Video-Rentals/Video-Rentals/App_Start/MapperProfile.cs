@@ -15,6 +15,7 @@ namespace Video_Rentals.App_Start
             Mapper.CreateMap<Customer, CustomersDto>();
             Mapper.CreateMap<Movie, MoviesDto>();
             Mapper.CreateMap<MembershipType, MembershipTypeDto>();
+            Mapper.CreateMap<Genre, GenreDto>();
 
 
 

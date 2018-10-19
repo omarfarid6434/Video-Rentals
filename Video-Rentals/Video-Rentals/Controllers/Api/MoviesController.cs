@@ -23,7 +23,9 @@ namespace Video_Rentals.Controllers.Api
         //Get/api/movies
         public IEnumerable<MoviesDto> GetMovies()
         {
-            return _context.Movies.ToList()
+            return _context.Movies
+                .Include(m=>m.Genre)
+                .ToList()
                 .Select(Mapper.Map<Movie,MoviesDto>);
         }
 
