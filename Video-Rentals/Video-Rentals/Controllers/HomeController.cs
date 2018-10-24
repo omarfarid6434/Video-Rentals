@@ -6,6 +6,8 @@ using System.Web.Mvc;
 
 namespace Video_Rentals.Controllers
 {
+
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         public ActionResult Index()
